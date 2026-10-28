@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descubra por que beber água é importante e confira dicas simples para manter a hidratação.">
+  <title>Água é Vida | A importância da hidratação</title>
+  <style>
+    :root {
+      --blue: #087ca7;
+      --deep: #073b5c;
+      --aqua: #dff7ff;
+      --white: #ffffff;
+      --ink: #17364a;
+      --muted: #527083;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: #f6fcff;
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(255,255,255,.96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #d8edf5;
+    }
+    nav {
+      max-width: 1100px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .logo { color: var(--blue); font-weight: 800; font-size: 1.2rem; }
+    nav a { color: var(--deep); text-decoration: none; font-weight: 700; margin-left: 16px; }
+    nav a:hover { color: var(--blue); }
+    .hero {
+      color: white;
+      padding: 84px 22px 90px;
+      background: radial-gradient(circle at 85% 20%, #61d9f0 0, transparent 28%),
+                  linear-gradient(135deg, #075985, #0ea5c6);
+      overflow: hidden;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 40px;
+    }
+    .eyebrow { text-transform: uppercase; letter-spacing: 2px; font-size: .8rem; font-weight: 800; }
+    h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.05; margin: 14px 0 22px; }
+    .hero p { max-width: 600px; font-size: 1.15rem; color: #e8fbff; }
+    .button {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      background: white;
+      color: var(--deep);
+      text-decoration: none;
+      font-weight: 800;
+      border: 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .water-art {
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+    }
+    .drop {
+      width: 190px;
+      height: 230px;
+      background: linear-gradient(145deg, #d8fbff, #52d4f1 55%, #079ac7);
+      border-radius: 65% 35% 60% 40% / 65% 35% 65% 35%;
+      transform: rotate(45deg);
+      box-shadow: inset -15px -15px 30px #087ca755, 0 25px 45px #003b5c55;
+      border: 3px solid #ffffff70;
+    }
+    section { max-width: 1100px; padding: 68px 22px; margin: auto; }
+    .section-title { text-align: center; max-width: 720px; margin: 0 auto 34px; }
+    h2 { color: var(--deep); font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 12px; }
+    .section-title p, .muted { color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card {
+      background: white;
+      border: 1px solid #dceef5;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 8px 25px #0b59710b;
+    }
+    .icon { font-size: 2rem; }
+    .card h3 { color: var(--blue); margin: 10px 0 8px; }
+    .tips { background: var(--aqua); max-width: none; }
+    .tips-inner { max-width: 1100px; margin: auto; padding: 0 22px; }
+    .tips-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .tip { background: white; padding: 17px 20px; border-radius: 14px; }
+    .tip strong { color: var(--deep); }
+    .calculator {
+      max-width: 720px;
+      margin: auto;
+      background: white;
+      border: 1px solid #dceef5;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 12px 30px #0b597110;
+    }
+    label { display: block; font-weight: 700; margin: 14px 0 7px; }
+    input, select {
+      width: 100%;
+      border: 1px solid #b8d9e6;
+      border-radius: 10px;
+      padding: 12px;
+      font: inherit;
+      color: var(--ink);
+      background: white;
+    }
+    .calc-button {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px;
+      background: var(--blue);
+      color: white;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-top: 18px;
+      cursor: pointer;
+    }
+    .result { margin-top: 18px; background: var(--aqua); border-radius: 12px; padding: 16px; display: none; }
+    .note { font-size: .9rem; color: var(--muted); }
+    .callout {
+      background: var(--deep);
+      color: white;
+      text-align: center;
+      border-radius: 22px;
+      padding: 35px 24px;
+    }
+    .callout h2 { color: white; }
+    footer { text-align: center; background: #052f49; color: #d8f5ff; padding: 24px; }
+    footer p { margin: 5px; }
+    @media (max-width: 760px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      nav a { margin: 0 12px 0 0; display: inline-block; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .water-art { min-height: 190px; }
+      .drop { width: 135px; height: 165px; }
+      .cards { grid-template-columns: 1fr; }
+      .tips-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav aria-label="Navegação principal">
+      <div class="logo">💧 Água é Vida</div>
+      <div>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#dicas">Dicas</a>
+        <a href="#calculadora">Hidratação</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Cuide de você</div>
+          <h1>Água: pequena atitude, grande diferença.</h1>
+          <p>A água é essencial para o funcionamento do corpo. Manter-se hidratado ajuda você a cuidar da saúde e a realizar suas atividades do dia a dia.</p>
+          <a class="button" href="#beneficios">Descubra os benefícios ↓</a>
+        </div>
+        <div class="water-art" aria-hidden="true"><div class="drop"></div></div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <div class="section-title">
+        <h2>Por que beber água?</h2>
+        <p>Nosso corpo precisa de água todos os dias para funcionar bem.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🌡️</div>
+          <h3>Regula a temperatura</h3>
+          <p>A água ajuda o organismo a controlar a temperatura, especialmente quando está calor ou fazemos exercícios.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🩸</div>
+          <h3>Transporta nutrientes</h3>
+          <p>Ela faz parte do sangue e contribui para levar nutrientes às células e eliminar resíduos do organismo.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🧠</div>
+          <h3>Ajuda no bem-estar</h3>
+          <p>Uma boa hidratação contribui para o funcionamento normal do corpo e pode ajudar a evitar sintomas de desidratação.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🦴</div>
+          <h3>Lubrifica as articulações</h3>
+          <p>A água participa da composição de líquidos que ajudam as articulações a se movimentarem.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🍽️</div>
+          <h3>Ajuda na digestão</h3>
+          <p>Ela participa da digestão e ajuda o intestino a funcionar adequadamente.</p>
+        </article>
+        <article class="card">
+          <div class="icon">⚡</div>
+          <h3>Apoia a rotina</h3>
+          <p>Beber água regularmente é um hábito simples que ajuda a manter o equilíbrio de líquidos do organismo.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="tips">
+      <div class="tips-inner">
+        <section id="dicas" style="padding-left:0;padding-right:0">
+          <div class="section-title">
+            <h2>Dicas para beber mais água</h2>
+            <p>Pequenos hábitos tornam a hidratação mais fácil.</p>
+          </div>
+          <div class="tips-list">
+            <div class="tip">🚰 <strong>Tenha uma garrafa por perto.</strong><br>Assim fica mais fácil lembrar de beber.</div>
+            <div class="tip">⏰ <strong>Crie lembretes.</strong><br>Faça pausas para beber água ao longo do dia.</div>
+            <div class="tip">🥤 <strong>Beba em vários momentos.</strong><br>Não espere sentir muita sede para se hidratar.</div>
+            <div class="tip">☀️ <strong>Aumente a atenção no calor.</strong><br>O calor e os exercícios podem aumentar a necessidade de líquidos.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section id="calculadora">
+      <div class="section-title">
+        <h2>Conheça sua necessidade de hidratação</h2>
+        <p>Não existe uma quantidade única ideal para todo mundo. As necessidades variam conforme idade, clima, atividade física e saúde.</p>
+      </div>
+      <div class="calculator">
+        <label for="idade">Faixa etária</label>
+        <select id="idade">
+          <option value="crianca">Criança</option>
+          <option value="adolescente">Adolescente</option>
+          <option value="adulto" selected>Adulto</option>
+          <option value="idoso">Pessoa idosa</option>
+        </select>
+        <label for="rotina">Como é sua rotina?</label>
+        <select id="rotina">
+          <option value="leve">Pouca atividade física</option>
+          <option value="moderada">Atividade física moderada</option>
+          <option value="intensa">Exercício intenso ou muito calor</option>
+        </select>
+        <button class="calc-button" onclick="mostrarOrientacao()">Ver orientação geral</button>
+        <div class="result" id="resultado" role="status" aria-live="polite"></div>
+        <p class="note">Esta ferramenta oferece orientação geral, não uma prescrição médica. Se você tem restrição de líquidos ou uma condição de saúde, siga as orientações de um profissional de saúde.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="callout">
+        <h2>Hidrate-se todos os dias!</h2>
+        <p>Beber água é um cuidado simples que faz parte de uma vida saudável.</p>
+        <a class="button" href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">Voltar ao início ↑</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Água é Vida</strong> · Informação para cuidar da saúde</p>
+    <p>Conteúdo educativo. Em caso de dúvidas individuais, procure um profissional de saúde.</p>
+  </footer>
+
+  <script>
+    function mostrarOrientacao() {
+      const idade = document.getElementById('idade').value;
+      const rotina = document.getElementById('rotina').value;
+      let mensagem = 'Beba água regularmente ao longo do dia e observe a sede e a cor da urina, que geralmente deve ser amarelo-clara.';
+      if (rotina === 'moderada') {
+        mensagem += ' Durante e após a atividade física, preste atenção à perda de líquidos e reponha-os gradualmente.';
+      } else if (rotina === 'intensa') {
+        mensagem += ' Exercício intenso e calor podem aumentar bastante a necessidade de líquidos. Faça pausas e considere orientação profissional para atividades prolongadas.';
+      }
+      if (idade === 'crianca') {
+        mensagem += ' Para crianças, a necessidade depende da idade e do tamanho; um responsável ou profissional de saúde pode orientar melhor.';
+      } else if (idade === 'adolescente') {
+        mensagem += ' Na adolescência, a necessidade varia com o crescimento, o clima e a atividade física.';
+      } else if (idade === 'idoso') {
+        mensagem += ' Pessoas idosas podem sentir menos sede; manter uma rotina de hidratação pode ajudar, respeitando eventuais restrições médicas.';
+      }
+      const resultado = document.getElementById('resultado');
+      resultado.textContent = mensagem;
+      resultado.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
